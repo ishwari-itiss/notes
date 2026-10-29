@@ -1,0 +1,30 @@
+services:
+  proxy:
+    build: ./proxy
+    container_name: proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./proxy/reverse-proxy.conf:/etc/apache2/sites-available/000-default.conf:ro
+    depends_on:
+      - iacsd
+      - itiss
+    restart: unless-stopped
+
+  iacsd:
+    build: ./iacsd
+    container_name: iacsd
+    expose:
+      - "80"
+    volumes:
+      - ./iacsd/index.html:/var/www/html/index.html:ro
+    restart: unless-stopped
+
+  itiss:
+    build: ./itiss
+    container_name: itiss
+    expose:
+      - "80"
+    volumes:
+      - ./itiss/index.html:/var/www/html/index.html:ro
+    restart: unless-stopped
