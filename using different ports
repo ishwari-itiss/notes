@@ -1,0 +1,14 @@
+services:
+  iacsd:
+    build: ./iacsd
+    container_name: iacsd
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  itiss:
+    build: ./itiss
+    container_name: itiss
+    ports:
+      - "8080:80"
+    restart: unless-stopped
