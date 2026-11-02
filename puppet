@@ -1,0 +1,16 @@
+node 'pclient' {
+        package {'tree':
+                ensure => installed,
+}
+        package {'curl':
+                ensure => installed,
+}
+        package {'nginx':
+                ensure => installed,
+}
+        service {'nginx':
+                ensure => running,
+                enable => true,
+}
+}
+
